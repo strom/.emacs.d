@@ -1,0 +1,14 @@
+auto-save-list
+*~
+session.*
+tramp
+elpa
+emms
+*.elc
+.DS_Store
+.yas-compiled-snippets.el
+.cask
+/url/
+/var/
+/.sx/
+recentf
