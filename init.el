@@ -83,7 +83,6 @@
   :diminish ivy-mode
   :bind (("\C-s" . swiper)
          ("s-f" . swiper)
-         ("s-F" . counsel-ag)
          ("C-c C-r" . ivy-resume)
          ("<f6>" . ivy-resume)
          ("M-x" . counsel-M-x)
@@ -118,7 +117,8 @@
   ;; Load extension only after projectile itself is loaded
   (use-package counsel-projectile
     :bind (("s-t" . counsel-projectile-find-file)
-           ("s-p" . hydra-projectile/body))
+           ("s-p" . hydra-projectile/body)
+           ("s-F" . counsel-projectile-ag))
     :config (counsel-projectile-on)))
 
 (use-package rainbow-delimiters
