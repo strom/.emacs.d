@@ -36,7 +36,7 @@
   ;; Implicit /body
   ;; See color chart for meaning.
   (:color teal
-	  :columns 5)
+          :columns 5)
   "Hydra Kill"
   ("k" kill-this-buffer "Kill Current Buffer")
   ("c" kill-buffer "Kill Buffer Cycle")
@@ -45,7 +45,7 @@
   ("q" nil "Quit"))
 
 (defhydra hydra-projectile (:color blue
-				   :columns 4)
+                                   :columns 4)
   "Hydra Projectile"
   ("a"   counsel-projectile-ag               "ag")
   ("f"   counsel-projectile-find-file        "Find File")
@@ -61,6 +61,15 @@
   ("p"   counsel-projectile-switch-project   "Switch Project")
   ("k"   projectile-kill-buffers             "Kill Buffers")
   ("q"   nil                                 "Quit" :color blue))
+
+(defhydra hydra-dumb-jump (:color blue
+                                  :columns 4)
+  "Hydra Dumb Jump"
+  ("g" dumb-jump-go "Go")
+  ("b" dumb-jump-back "Back")
+  ("l" dumb-jump-quick-look "Look")
+  ("e" dumb-jump-go-prefer-external "External")
+  ("q" nil "Quit"))
 
 (provide 'hydras)
 ;;; hydras.el ends here

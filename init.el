@@ -49,6 +49,13 @@
     :ensure tern
     :init (add-to-list 'company-backends 'company-tern)))
 
+(use-package dumb-jump
+  :ensure hydra
+  :bind (("M-g" . hydra-dumb-jump/body))
+  :config
+  (defvar dumb-jump-selector)
+  (setq dumb-jump-selector 'ivy))
+
 (use-package expand-region
   :bind (("C-=" . er/expand-region)
          ("s-r" . er/expand-region)
@@ -128,6 +135,8 @@
 (use-package feature-mode
   :mode (("\\.feature\\'" . feature-mode)))
 
+(use-package json-mode)
+
 (use-package tern
   :diminish tern-mode
   :init
@@ -192,6 +201,8 @@
  '(inhibit-startup-screen t)
  '(ivy-mode t)
  '(ivy-use-virtual-buffers t)
+ '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
  '(load-prefer-newer t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
