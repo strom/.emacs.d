@@ -2,6 +2,7 @@
 ;;; Commentary:
 (require 'package)
 
+
 ;;; Code:
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -15,104 +16,195 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-;;; User customization
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers
-		'(javascript-jshint javascript-jscs javascript-gjslint javascript-standard)))
-(use-package web-mode
-  :ensure t
-  :mode (("\\.html\\'" . web-mode)
-	 ("\\.js[x]?\\'" . web-mode)
-	 ("\\.json\\'" . web-mode))
-  :init
-  (defvar web-mode-content-types-alist)
-  (setq web-mode-content-types-alist
-	'(("jsx"  . "\\.js[x]?\\'")))
-  :config
-  ;; (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  ;; (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
-;; Typing replaces selection
-(delete-selection-mode 1)
-;; Show line and column numbers
-(global-linum-mode t)
-(setq column-number-mode t)
-;; Highlight matching parens
-(show-paren-mode 1)
-;; Initial Window Size
-(add-to-list 'default-frame-alist '(height . 48))
-(add-to-list 'default-frame-alist '(width . 128))
-;; Theme
-(load-theme 'zenburn t)
-
+;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslit-executable"
 (defun my/use-eslint-from-node-modules ()
-  "Use local eslint from node_modules before global.
-http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslit-executable"
+  "Use local eslint from node_modules before global."
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
                 "node_modules"))
          (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                      (expand-file-name "node_modules/.bin/eslint"
                                         root))))
     (when (and eslint (file-executable-p eslint))
+      (defvar flycheck-javascript-eslint-executable)
       (setq-local flycheck-javascript-eslint-executable eslint))))
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
-(defun my/setup-indent (n)
-  "Indentation to N spaces."
-  ;; I also set standard-indent with M-x customize-variable
-  ;; java/c/c++
-  ;; (setq c-basic-offset n)
-  ;; web development
-  ;; (setq coffee-tab-width n) ; coffeescript
-  ;; (setq javascript-indent-level n) ; javascript-mode
-  ;; (setq js-indent-level n) ; js-mode
-  ;; (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
-  (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
-  (setq web-mode-css-indent-offset n) ; web-mode, css in html file
-  (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
-  ;; (setq css-indent-offset n) ; css-mode
-  )
-(my/setup-indent 2)
 
-;; Ivy
-(ivy-mode 1)
-(defvar ivy-use-virtual-buffers)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-;; Projectile Integration
-(projectile-mode)
+;; Bootstrap use-package.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t) ;; Always auto install packages
+
+;; Installed packages
+(use-package adaptive-wrap)
+
+(use-package company
+  :diminish company-mode
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (use-package company-tern
+    :ensure tern
+    :init (add-to-list 'company-backends 'company-tern)))
+
+(use-package expand-region
+  :bind (("C-=" . er/expand-region)
+         ("s-r" . er/expand-region)
+         ("s-R" . er/contract-region)))
+
+(use-package flycheck
+  :init
+  (global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers
+                '(javascript-jshint javascript-jscs javascript-gjslint javascript-standard))
+  :config
+  ;; Use eslint for web mode.
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules))
+
+(use-package hydra
+  ;; Load all hydras from load-path. This won't work in :config because we need it for other packages before this package lazy-loads.
+  :init (use-package hydras
+          :ensure nil ;; Local packages can't be ensured or it'll break config.
+          :load-path "./lisp")
+  :bind (("C-x k" . hydra-kill-buffer/body)))
+
+(use-package ivy
+  ;; Don't show useless minor mode in status bar.
+  :diminish ivy-mode
+  :bind (("\C-s" . swiper)
+         ("s-f" . swiper)
+         ("s-F" . counsel-ag)
+         ("C-c C-r" . ivy-resume)
+         ("<f6>" . ivy-resume)
+         ("M-x" . counsel-M-x)
+         ("M-y" . counsel-yank-pop)
+         ("C-x C-f" . counsel-find-file)
+         ("<f2> i" . counsel-info-lookup-symbol)
+         ("<f2> u" . counsel-unicode-char)
+         ("C-c g" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate))
+  :config
+  ;; Ivy
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+
+(use-package multiple-cursors
+  :bind (("s-d" . mc/mark-next-like-this)
+         ("s-D" . mc/unmark-next-like-this)))
+
+(use-package move-lines
+  ;; Move lines and regions with M-up/M-p and M-down/M-n
+  :ensure nil ;; Local packages can't be ensured or it'll break config.
+  :load-path "./lisp"
+  :config (move-lines-binding))
+
+(use-package projectile
+  :ensure hydra
+  ;; Don't show useless minor mode in status bar.
+  :diminish projectile-mode
+  :config
+  ;; Load extension only after projectile itself is loaded
+  (use-package counsel-projectile
+    :bind (("s-p" . counsel-projectile-find-file)
+           ;; This needs to be here because the config block will override it if we bind in the projectile package.
+           ("C-c p" . hydra-projectile/body))
+    :config (counsel-projectile-on)))
+
+(use-package rainbow-delimiters
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package smartparens-config
+  :ensure smartparens
+  :diminish smartparens-mode)
+
+(use-package zenburn-theme
+  :config (load-theme 'zenburn t))
+
+;; Language Modes
+(use-package feature-mode
+  :mode (("\\.feature\\'" . feature-mode)))
+
+(use-package tern
+  :diminish tern-mode
+  :init
+  (add-hook 'web-mode-hook 'tern-mode)
+  :config
+  ;; Don't generate port files
+  (add-to-list 'tern-command "--no-port-file" 'append))
+
+(use-package web-mode
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.js[x]?\\'" . web-mode)
+         ("\\.json\\'" . web-mode))
+  :init
+  (defvar web-mode-content-types-alist)
+  (setq web-mode-content-types-alist
+        '(("jsx"  . "\\.js[x]?\\'")))
+  :config
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
+
+(use-package yaml-mode
+  :mode (("\\.y[a]?ml\\'" . yaml-mode)))
+
+
+
+;; Initial Window Size
+(add-to-list 'default-frame-alist '(height . 48))
+(add-to-list 'default-frame-alist '(width . 128))
+
+;; Remove extraneous whitespace on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Some personal bindings
+;; s-*, \s - Command
+;; S-* - Shift
+;; C-* - Control
+;; M-* - Meta/Alt
+
+;; macOS Navigation
+(global-set-key (kbd "s-/") 'comment-line)
+(global-set-key (kbd "s-<left>") 'back-to-indentation) ;; Move to the beginning of indented text
+(global-set-key (kbd "s-<right>") 'move-end-of-line)
+(global-set-key (kbd "s-<up>") 'beginning-of-buffer)
+(global-set-key (kbd "s-<down>") 'end-of-buffer)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(column-number-mode t)
+ '(company-dabbrev-downcase nil)
+ '(company-dabbrev-ignore-case t)
+ '(delete-selection-mode t)
+ '(enable-recursive-minibuffers t)
+ '(fill-column 120)
  '(global-auto-revert-mode t)
+ '(global-linum-mode t)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   (quote
-    (counsel-projectile ivy zenburn-theme web-mode projectile use-package flycheck))))
+ '(ivy-mode t)
+ '(ivy-use-virtual-buffers t)
+ '(load-prefer-newer t)
+ '(make-backup-files nil)
+ '(menu-bar-mode nil)
+ '(mouse-wheel-progressive-speed nil)
+ '(ns-right-command-modifier (quote left))
+ '(package-selected-packages nil)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(smartparens-global-mode t)
+ '(standard-indent 2)
+ '(tool-bar-mode nil)
+ '(web-mode-markup-indent-offset 2))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -121,4 +213,4 @@ http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslit
  )
 
 (provide '.emacs)
-;;; .emacs ends here
+;;; init.el ends here
