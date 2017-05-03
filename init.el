@@ -114,11 +114,11 @@
   ;; Don't show useless minor mode in status bar.
   :diminish projectile-mode
   :config
+  (projectile-mode)
   ;; Load extension only after projectile itself is loaded
   (use-package counsel-projectile
-    :bind (("s-p" . counsel-projectile-find-file)
-           ;; This needs to be here because the config block will override it if we bind in the projectile package.
-           ("C-c p" . hydra-projectile/body))
+    :bind (("s-t" . counsel-projectile-find-file)
+           ("s-p" . hydra-projectile/body))
     :config (counsel-projectile-on)))
 
 (use-package rainbow-delimiters
