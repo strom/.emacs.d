@@ -170,6 +170,8 @@
 
 (use-package json-mode)
 
+(use-package markdown-mode)
+
 (use-package ruby-mode)
 
 (use-package web-mode
