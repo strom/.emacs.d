@@ -41,12 +41,8 @@
 
 (use-package company
   :diminish company-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
   :config
-  (use-package company-tern
-    :ensure tern
-    :init (add-to-list 'company-backends 'company-tern)))
+  (use-package company-tern))
 
 ;; Changed lines in gutter
 (use-package diff-hl
@@ -222,12 +218,19 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(column-number-mode t)
+ '(company-backends
+   (quote
+    (company-tern company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev)))
  '(company-dabbrev-downcase nil)
  '(company-dabbrev-ignore-case t)
+ '(company-search-regexp-function (quote company-search-flex-regexp))
  '(delete-selection-mode t)
  '(enable-recursive-minibuffers t)
  '(fill-column 120)
  '(global-auto-revert-mode t)
+ '(global-company-mode t)
  '(global-hl-line-mode t)
  '(global-linum-mode t)
  '(indent-tabs-mode nil)
