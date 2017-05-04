@@ -119,6 +119,7 @@
   :config (move-lines-binding))
 
 (use-package neotree
+  :bind (("s-\\" . neotree-project-dir))
   :config
   (defun neotree-project-dir ()
     "Open NeoTree using the git root."
@@ -131,10 +132,7 @@
               (progn
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
-        (message "Could not find git project root."))))
-
-  ;; Bind here after defining the function
-  (global-set-key (kbd "s-\\") 'neotree-project-dir))
+        (message "Could not find git project root.")))))
 
 (use-package projectile
   :ensure hydra
