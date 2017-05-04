@@ -135,17 +135,18 @@
         (message "Could not find git project root.")))))
 
 (use-package projectile
-  :ensure hydra
   ;; Don't show useless minor mode in status bar.
   :diminish projectile-mode
   :config
+  ;; Enable projectile key bindings and cache.
   (projectile-mode)
-  ;; Load extension only after projectile itself is loaded
   (use-package counsel-projectile
+    :ensure hydra
+    ;; Bind in init so projectile can have counsel bindings even if this is lazy loaded.
+    :init (counsel-projectile-on)
     :bind (("s-t" . counsel-projectile-find-file)
            ("s-p" . hydra-projectile/body)
-           ("s-F" . counsel-projectile-ag))
-    :config (counsel-projectile-on)))
+           ("s-F" . counsel-projectile-ag))))
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
