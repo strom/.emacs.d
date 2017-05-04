@@ -120,7 +120,7 @@
 
 (use-package neotree
   :config
-    (defun neotree-project-dir ()
+  (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
     (let ((project-dir (projectile-project-root))
@@ -133,11 +133,8 @@
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
 
-    ;; Set here for projectile to open in neotree
-    (defvar projectile-switch-project-action)
-    (setq projectile-switch-project-action 'neotree-projectile-action)
-    ;; Bind here after defining the function
-    (global-set-key (kbd "s-\\") 'neotree-project-dir))
+  ;; Bind here after defining the function
+  (global-set-key (kbd "s-\\") 'neotree-project-dir))
 
 (use-package projectile
   :ensure hydra
