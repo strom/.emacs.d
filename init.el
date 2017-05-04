@@ -136,6 +136,12 @@
   :config
   ;; Enable projectile key bindings and cache.
   (projectile-mode)
+
+  ;; Ruby on Rails support
+  (use-package projectile-rails
+    :config (projectile-rails-global-mode))
+
+  ;; Ivy/Counsel support
   (use-package counsel-projectile
     :ensure hydra
     ;; Bind in init so projectile can have counsel bindings even if this is lazy loaded.
@@ -204,6 +210,9 @@
 ;; S-* - Shift
 ;; C-* - Control
 ;; M-* - Meta/Alt
+
+;; Use ibuffer instead of buffer list
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; macOS Navigation
 (global-set-key (kbd "s-/") 'comment-line)
