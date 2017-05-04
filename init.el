@@ -118,6 +118,27 @@
   :load-path "./lisp"
   :config (move-lines-binding))
 
+(use-package neotree
+  :config
+    (defun neotree-project-dir ()
+    "Open NeoTree using the git root."
+    (interactive)
+    (let ((project-dir (projectile-project-root))
+          (file-name (buffer-file-name)))
+      (neotree-toggle)
+      (if project-dir
+          (if (neo-global--window-exists-p)
+              (progn
+                (neotree-dir project-dir)
+                (neotree-find file-name)))
+        (message "Could not find git project root."))))
+
+    ;; Set here for projectile to open in neotree
+    (defvar projectile-switch-project-action)
+    (setq projectile-switch-project-action 'neotree-projectile-action)
+    ;; Bind here after defining the function
+    (global-set-key (kbd "s-\\") 'neotree-project-dir))
+
 (use-package projectile
   :ensure hydra
   ;; Don't show useless minor mode in status bar.
@@ -222,6 +243,8 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-wheel-progressive-speed nil)
+ '(neo-smart-open t)
+ '(neo-vc-integration (quote (face)))
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages nil)
  '(scroll-bar-mode nil)
