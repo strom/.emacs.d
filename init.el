@@ -240,6 +240,7 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-wheel-progressive-speed nil)
+ '(neo-show-hidden-files t)
  '(neo-show-updir-line nil nil nil "Since we use with projectile, we don't need to change root dirs.")
  '(neo-smart-open t)
  '(neo-theme (quote arrow))
