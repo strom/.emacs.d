@@ -1,14 +1,13 @@
 ;;; package --- summary
-;;; Commentary:
-(require 'package)
 
+;;; Commentary:
+
+;; My personal Emacs config
 
 ;;; Code:
+(require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+             '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -98,6 +97,8 @@
   ;; Ivy
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
+(use-package magit)
+
 (use-package multiple-cursors
   :bind (("s-d" . mc/mark-next-like-this)
          ("s-D" . mc/unmark-next-like-this)))
@@ -128,15 +129,6 @@
   :ensure smartparens
   :diminish smartparens-mode)
 
-(use-package zenburn-theme
-  :config (load-theme 'zenburn t))
-
-;; Language Modes
-(use-package feature-mode
-  :mode (("\\.feature\\'" . feature-mode)))
-
-(use-package json-mode)
-
 (use-package tern
   :diminish tern-mode
   :init
@@ -144,6 +136,19 @@
   :config
   ;; Don't generate port files
   (add-to-list 'tern-command "--no-port-file" 'append))
+
+(use-package zenburn-theme
+  :config (load-theme 'zenburn t))
+
+;; Language Modes
+(use-package feature-mode
+  :mode (("\\.feature\\'" . feature-mode)))
+
+(use-package jdee)
+
+(use-package json-mode)
+
+(use-package ruby-mode)
 
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)
@@ -154,6 +159,7 @@
   (setq web-mode-content-types-alist
         '(("jsx"  . "\\.js[x]?\\'")))
   :config
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
 
