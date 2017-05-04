@@ -97,7 +97,8 @@
   ;; Ivy
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
-(use-package magit)
+(use-package magit
+  :bind (("C-c g" . magit-status)))
 
 (use-package multiple-cursors
   :bind (("s-d" . mc/mark-next-like-this)
