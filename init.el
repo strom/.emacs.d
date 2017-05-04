@@ -48,6 +48,14 @@
     :ensure tern
     :init (add-to-list 'company-backends 'company-tern)))
 
+;; Changed lines in gutter
+(use-package diff-hl
+  :init
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode t))
+
 (use-package dumb-jump
   :ensure hydra
   :bind (("M-g" . hydra-dumb-jump/body))
