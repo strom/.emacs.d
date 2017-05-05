@@ -231,9 +231,9 @@
  '(column-number-mode t)
  '(company-backends
    (quote
-    ((company-tern company-files company-capf company-keywords)
-     (company-dabbrev-code company-abbrev company-etags)
-     company-nxml company-css company-eclim company-semantic company-oddmuse company-dabbrev)))
+    (company-files company-nxml company-css company-eclim company-elisp
+                   (company-tern company-capf company-keywords company-dabbrev-code company-abbrev company-etags)
+                   company-semantic company-oddmuse company-dabbrev)))
  '(company-dabbrev-downcase nil)
  '(company-dabbrev-ignore-case t)
  '(company-idle-delay 0.3)
@@ -270,6 +270,9 @@
  '(smartparens-global-mode t)
  '(standard-indent 2)
  '(tool-bar-mode nil)
+ '(web-mode-attr-indent-offset 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2))
 
 (custom-set-faces
