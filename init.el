@@ -177,6 +177,8 @@
 
 (use-package markdown-mode)
 
+(use-package robe)
+
 (use-package ruby-mode)
 
 (use-package web-mode
