@@ -231,12 +231,15 @@
  '(column-number-mode t)
  '(company-backends
    (quote
-    (company-tern company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-oddmuse company-dabbrev)))
+    ((company-tern company-files company-capf company-keywords)
+     (company-dabbrev-code company-abbrev company-etags)
+     company-nxml company-css company-eclim company-semantic company-oddmuse company-dabbrev)))
  '(company-dabbrev-downcase nil)
  '(company-dabbrev-ignore-case t)
+ '(company-idle-delay 0.3)
+ '(company-minimum-prefix-length 2)
  '(company-search-regexp-function (quote company-search-flex-regexp))
+ '(completion-styles (quote (initials partial-completion)))
  '(delete-selection-mode t)
  '(enable-recursive-minibuffers t)
  '(fill-column 120)
