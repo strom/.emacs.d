@@ -53,7 +53,6 @@
   (diff-hl-flydiff-mode t))
 
 (use-package dumb-jump
-  :ensure hydra
   :bind (("M-g" . hydra-dumb-jump/body))
   :config
   (defvar dumb-jump-selector)
