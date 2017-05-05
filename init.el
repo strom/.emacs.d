@@ -82,6 +82,7 @@
   :bind (("C-x k" . hydra-kill-buffer/body)))
 
 (use-package ivy
+  :init (ivy-mode)
   ;; Don't show useless minor mode in status bar.
   :diminish ivy-mode
   :bind (("\C-s" . swiper)
@@ -99,7 +100,15 @@
          ("C-x l" . counsel-locate))
   :config
   ;; Ivy
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
+  ;; Ivy/Counsel support
+  (use-package counsel-projectile
+    ;; Bind in init so projectile can have counsel bindings even if this is lazy loaded.
+    :init (counsel-projectile-on)
+    :bind (("s-t" . counsel-projectile-find-file)
+           ("s-p" . hydra-projectile/body)
+           ("s-F" . counsel-projectile-ag))))
 
 (use-package magit
   :bind (("C-c g" . magit-status)))
@@ -139,16 +148,7 @@
 
   ;; Ruby on Rails support
   (use-package projectile-rails
-    :config (projectile-rails-global-mode))
-
-  ;; Ivy/Counsel support
-  (use-package counsel-projectile
-    :ensure hydra
-    ;; Bind in init so projectile can have counsel bindings even if this is lazy loaded.
-    :init (counsel-projectile-on)
-    :bind (("s-t" . counsel-projectile-find-file)
-           ("s-p" . hydra-projectile/body)
-           ("s-F" . counsel-projectile-ag))))
+    :config (projectile-rails-global-mode)))
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
