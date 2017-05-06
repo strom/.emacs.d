@@ -31,6 +31,7 @@
   (interactive)
   (mapc 'kill-buffer (cdr (buffer-list (current-buffer)))))
 
+
 ;; Hydras
 (defhydra hydra-kill-buffer
   ;; Implicit /body
@@ -43,6 +44,7 @@
   ("a" kill-all-buffers "Kill All Buffers")
   ("o" kill-other-buffers "Kill Other Buffers")
   ("q" nil "Quit"))
+
 
 (defhydra hydra-projectile (:color blue
                                    :columns 4)
@@ -62,6 +64,7 @@
   ("k"   projectile-kill-buffers             "Kill Buffers")
   ("q"   nil                                 "Quit" :color blue))
 
+
 (defhydra hydra-dumb-jump (:color blue
                                   :columns 4)
   "Hydra Dumb Jump"
@@ -70,6 +73,19 @@
   ("l" dumb-jump-quick-look "Look")
   ("e" dumb-jump-go-prefer-external "External")
   ("q" nil "Quit"))
+
+
+(defhydra hydra-smartparens (:columns 4)
+  "Smartparens"
+  ("e" sp-up-sexp "Up")
+  ("a" sp-backward-down-sexp "Backward Down")
+  ("n" sp-down-sexp "Down")
+  ("p" sp-backward-up-sexp "Backward Up")
+  ("f" sp-forward-sexp "Forward")
+  ("b" sp-backward-sexp "Backward")
+  ("u" sp-unwrap-sexp "Unwrap")
+  ("k"  "Kill" :color blue)
+  ("q" nil "Quit" :color blue))
 
 (provide 'hydras)
 ;;; hydras.el ends here
