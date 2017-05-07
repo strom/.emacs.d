@@ -169,6 +169,10 @@
   ;; Don't generate port files
   (add-to-list 'tern-command "--no-port-file" 'append))
 
+(use-package which-key
+  ;; Key bindng training wheels.
+  :init (which-key-mode))
+
 (use-package zenburn-theme
   :config (load-theme 'zenburn t))
 
