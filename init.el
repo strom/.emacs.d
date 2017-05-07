@@ -149,7 +149,7 @@
   (use-package projectile-rails
     ;; Don't defer the loading of projecile-rails with keybindings.
     :init (projectile-rails-global-mode)
-    :bind (("C-c r" . hydra-projectile-rails/body))))
+    :bind (("s-R" . hydra-projectile-rails/body))))
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
