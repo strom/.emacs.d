@@ -269,6 +269,7 @@
  '(load-prefer-newer t)
  '(menu-bar-mode nil)
  '(mouse-wheel-progressive-speed nil)
+ '(neo-auto-indent-point t)
  '(neo-show-hidden-files t)
  '(neo-show-updir-line nil nil nil "Since we use with projectile, we don't need to change root dirs.")
  '(neo-smart-open t)
