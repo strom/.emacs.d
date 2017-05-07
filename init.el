@@ -277,7 +277,9 @@
  '(neo-vc-integration (quote (face)))
  '(neo-window-fixed-size nil)
  '(ns-right-command-modifier (quote left))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   (quote
+    (zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(smartparens-global-mode t)
