@@ -148,8 +148,7 @@
   ;; Ruby on Rails support
   (use-package projectile-rails
     ;; Don't defer the loading of projecile-rails with keybindings.
-    :init (projectile-rails-global-mode)
-    :bind (("s-R" . hydra-projectile-rails/body))))
+    :init (projectile-rails-global-mode)))
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
