@@ -185,6 +185,11 @@
 
 (use-package ruby-mode)
 
+(use-package inf-ruby
+  ;; This is so we can use pry or byebug
+  :init
+  (add-hook 'after-init-hook 'inf-ruby-switch-setup))
+
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)
          ("\\.js[x]?\\'" . web-mode)
