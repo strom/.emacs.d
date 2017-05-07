@@ -155,7 +155,10 @@
 (use-package smartparens-config
   :ensure smartparens
   :diminish smartparens-mode
-  :bind (("C-M-s" . hydra-smartparens/body)))
+  :bind (("C-M-s" . hydra-smartparens/body))
+  :config
+  ;; Use recommended bindings
+  (sp-use-smartparens-bindings))
 
 (use-package tern
   :diminish tern-mode

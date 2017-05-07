@@ -79,8 +79,8 @@
   "Smartparens"
   ("e" sp-up-sexp "Up")
   ("a" sp-backward-down-sexp "Backward Down")
-  ("n" sp-down-sexp "Down")
-  ("p" sp-backward-up-sexp "Backward Up")
+  ("n" sp-next-sexp "Next")
+  ("p" sp-previous-up-sexp "Previous")
   ("f" sp-forward-sexp "Forward")
   ("b" sp-backward-sexp "Backward")
   ("u" sp-unwrap-sexp "Unwrap")
