@@ -240,6 +240,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
+ '(backup-directory-alist (quote (("." . "~/.backups"))))
  '(column-number-mode t)
  '(company-backends
    (quote
@@ -266,7 +267,6 @@
  '(js-indent-level 2)
  '(json-reformat:indent-width 2)
  '(load-prefer-newer t)
- '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-wheel-progressive-speed nil)
  '(neo-show-hidden-files t)

@@ -2,6 +2,7 @@ auto-save-list
 *~
 .#*
 \#*\#
+.backups
 session.*
 tramp
 elpa
