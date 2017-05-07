@@ -147,7 +147,9 @@
 
   ;; Ruby on Rails support
   (use-package projectile-rails
-    :config (projectile-rails-global-mode)))
+    ;; Don't defer the loading of projecile-rails with keybindings.
+    :init (projectile-rails-global-mode)
+    :bind (("C-c r" . hydra-projectile-rails/body))))
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
@@ -187,8 +189,8 @@
 
 (use-package inf-ruby
   ;; This is so we can use pry or byebug
-  :init
-  (add-hook 'after-init-hook 'inf-ruby-switch-setup))
+  :config
+  (inf-ruby-switch-setup))
 
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)
