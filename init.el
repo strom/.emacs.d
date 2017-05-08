@@ -273,6 +273,7 @@
  '(menu-bar-mode nil)
  '(mouse-wheel-progressive-speed nil)
  '(neo-auto-indent-point t)
+ '(neo-autorefresh nil nil nil "This currently doesn't do what I want with projectile root customization.")
  '(neo-show-hidden-files t)
  '(neo-show-updir-line nil nil nil "Since we use with projectile, we don't need to change root dirs.")
  '(neo-smart-open t)
