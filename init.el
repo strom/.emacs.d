@@ -57,7 +57,7 @@
   (diff-hl-flydiff-mode t))
 
 (use-package dumb-jump
-  :bind (("M-g" . hydra-dumb-jump/body))
+  :bind (("s-g" . hydra-dumb-jump/body))
   :config
   (defvar dumb-jump-selector)
   (setq dumb-jump-selector 'ivy))
@@ -267,7 +267,6 @@
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-hl-line-mode t)
- '(global-linum-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ivy-mode t)
