@@ -261,6 +261,7 @@
  '(company-minimum-prefix-length 2)
  '(company-search-regexp-function (quote company-search-flex-regexp))
  '(completion-styles (quote (initials partial-completion)))
+ '(create-lockfiles nil)
  '(delete-selection-mode t)
  '(enable-recursive-minibuffers t)
  '(fill-column 120)
@@ -288,6 +289,9 @@
  '(package-selected-packages
    (quote
     (which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+ '(ruby-deep-arglist nil)
+ '(ruby-deep-indent-paren nil)
+ '(ruby-deep-indent-paren-style nil)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(smartparens-global-mode t)
