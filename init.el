@@ -241,6 +241,21 @@
 (global-set-key (kbd "s-<up>") 'beginning-of-buffer)
 (global-set-key (kbd "s-<down>") 'end-of-buffer)
 
+;; Set Frame title
+;; https://github.com/syl20bnr/spacemacs/issues/2139
+(defun my/frame-title-format ()
+  "Return frame title with current project name, where applicable."
+  (let ((file buffer-file-name))
+    (if 'file
+        (concat (abbreviate-file-name file)
+                (when (and (bound-and-true-p projectile-mode)
+                           (projectile-project-p))
+                  (format " [%s]" (projectile-project-name))))
+      "%b")))
+
+(when (display-graphic-p)
+  (setq frame-title-format '((:eval (my/frame-title-format)))))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
