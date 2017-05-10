@@ -173,6 +173,8 @@
   ;; Don't generate port files
   (add-to-list 'tern-command "--no-port-file" 'append))
 
+(use-package wgrep)
+
 (use-package which-key
   :diminish which-key-mode
   ;; Key bindng training wheels.
@@ -303,7 +305,7 @@
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages
    (quote
-    (which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+    (wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(ruby-deep-indent-paren-style nil)
