@@ -50,6 +50,11 @@
   :config
   (use-package company-tern))
 
+;; Launching Emacs from Applications needs this for ag.
+(use-package exec-path-from-shell
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; Changed lines in gutter
 (use-package diff-hl
   :init
@@ -318,7 +323,7 @@
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages
    (quote
-    (wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+    (exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(ruby-deep-indent-paren-style nil)
