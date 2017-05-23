@@ -336,6 +336,7 @@
  '(web-mode-attr-indent-offset 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
+ '(web-mode-enable-current-element-highlight t)
  '(web-mode-markup-indent-offset 2))
 
 (custom-set-faces
@@ -344,7 +345,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(hl-line ((t (:background "gray23"))))
- '(region ((t (:background "gray33"))) nil "Make selected region more obvious"))
+ '(region ((t (:background "gray33"))) nil "Make selected region more obvious")
+ '(web-mode-current-element-highlight-face ((t (:underline t)))))
 
 (provide '.emacs)
 ;;; init.el ends here
