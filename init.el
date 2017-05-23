@@ -37,7 +37,9 @@
 (setq use-package-always-ensure t) ;; Always auto install packages
 
 ;; Installed packages
-(use-package adaptive-wrap)
+(use-package adaptive-wrap
+  :init
+  (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode))
 
 (use-package autorevert
   ;; This package is part of core Emacs, so this import is solely to diminish the minor mode.
@@ -273,6 +275,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(adaptive-wrap-extra-indent 2)
  '(auto-save-file-name-transforms (\` ((".*" (\, temporary-file-directory) t))))
  '(backup-directory-alist (quote (("." . "~/.emacs.d/.backups"))))
  '(column-number-mode t)
@@ -288,12 +291,14 @@
  '(company-search-regexp-function (quote company-search-flex-regexp))
  '(completion-styles (quote (initials partial-completion)))
  '(create-lockfiles nil)
+ '(css-indent-offset 2)
  '(delete-selection-mode t)
  '(enable-recursive-minibuffers t)
  '(fill-column 120)
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-hl-line-mode t)
+ '(global-visual-line-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ivy-mode t)
@@ -323,6 +328,7 @@
  '(smartparens-global-mode t)
  '(standard-indent 2)
  '(tool-bar-mode nil)
+ '(visual-line-fringe-indicators (quote (left-curly-arrow nil)))
  '(web-mode-attr-indent-offset 2)
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
