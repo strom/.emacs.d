@@ -243,6 +243,9 @@
 ;; Remove extraneous whitespace on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+;; Set visual-line-mode when coding
+(add-hook 'prog-mode-hook #'visual-line-mode)
+
 ;; Some personal bindings
 ;; s-*, \s - Command
 ;; S-* - Shift
