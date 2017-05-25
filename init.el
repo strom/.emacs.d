@@ -198,17 +198,6 @@
 
 (use-package markdown-mode)
 
-;; Java
-(defun my/meghanada-mode-setup ()
-  "Setup meghanada-mode."
-  (unless (f-exists? (meghanada--locate-server-jar))
-    (meghanada-install-server)))
-
-(use-package meghanada
-  :init
-  (add-hook 'meghanada-mode-hook #'my/meghanada-mode-setup)
-  (add-hook 'java-mode-hook 'meghanada-mode))
-
 (use-package robe)
 
 (use-package ruby-mode)
