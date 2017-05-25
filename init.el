@@ -340,7 +340,8 @@
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-enable-current-element-highlight t)
- '(web-mode-markup-indent-offset 2))
+ '(web-mode-markup-indent-offset 2)
+ '(wgrep-auto-save-buffer t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
