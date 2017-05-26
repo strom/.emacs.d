@@ -319,6 +319,7 @@
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(ruby-deep-indent-paren-style nil)
+ '(ruby-insert-encoding-magic-comment nil)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(smartparens-global-mode t)
