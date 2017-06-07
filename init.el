@@ -168,7 +168,7 @@
   :ensure smartparens
   :diminish smartparens-mode
   :bind (("C-M-s" . hydra-smartparens/body))
-  :config
+  :init
   ;; Use recommended bindings
   (sp-use-smartparens-bindings))
 
