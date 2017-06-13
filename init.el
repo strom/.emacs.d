@@ -242,7 +242,8 @@
 ;; M-* - Meta/Alt
 
 ;; Use ibuffer instead of buffer list
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x b") 'counsel-projectile-switch-to-buffer)
+(global-set-key (kbd "C-x C-b") 'projectile-ibuffer)
 
 ;; macOS Navigation
 (global-set-key (kbd "s-/") 'comment-line)

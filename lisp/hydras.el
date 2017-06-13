@@ -40,7 +40,7 @@
           :columns 5)
   "Hydra Kill"
   ("k" kill-this-buffer "Kill Current Buffer")
-  ("c" kill-buffer "Kill Buffer Cycle")
+  ("l" kill-buffer "List Buffers")
   ("a" kill-all-buffers "Kill All Buffers")
   ("o" kill-other-buffers "Kill Other Buffers")
   ("q" nil "Quit"))
