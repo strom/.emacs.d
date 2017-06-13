@@ -234,6 +234,7 @@
 
 ;; Set visual-line-mode when coding
 (add-hook 'prog-mode-hook #'visual-line-mode)
+(diminish 'visual-line-mode)
 
 ;; Some personal bindings
 ;; s-*, \s - Command
