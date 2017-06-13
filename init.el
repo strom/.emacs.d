@@ -166,11 +166,12 @@
 
 (use-package smartparens-config
   :ensure smartparens
-  :diminish smartparens-mode
   :bind (("C-M-s" . hydra-smartparens/body))
   :init
   ;; Use recommended bindings
-  (sp-use-smartparens-bindings))
+  (sp-use-smartparens-bindings)
+  ;; For some reason, we can't diminish with the keyword. Maybe because smartparens-config invokes smartparens indirectly?
+  (diminish 'smartparens-mode))
 
 (use-package tern
   :diminish tern-mode
