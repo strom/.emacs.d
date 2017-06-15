@@ -258,6 +258,8 @@
 (global-set-key (kbd "s-<right>") 'move-end-of-line)
 (global-set-key (kbd "s-<up>") 'beginning-of-buffer)
 (global-set-key (kbd "s-<down>") 'end-of-buffer)
+(global-set-key (kbd "s-z") 'undo-tree-undo)
+(global-set-key (kbd "s-Z") 'undo-tree-redo)
 
 ;; Set Frame title
 ;; https://github.com/syl20bnr/spacemacs/issues/2139
