@@ -49,20 +49,21 @@
 (defhydra hydra-projectile (:color blue
                                    :columns 4)
   "Hydra Projectile"
-  ("a"   counsel-projectile-ag               "ag")
+  ;; ("a"   counsel-projectile-ag               "ag")
   ("f"   counsel-projectile-find-file        "Find File")
+  ("r"   projectile-replace                  "Replace in Project")
   ("e"   projectile-recentf                  "Recent Files")
   ;; ("z"   projectile-cache-current-file       "Cache Current File")
 
-  ("d"   counsel-projectile-find-dir         "Find Directory")
-  ("b"   counsel-projectile-switch-to-buffer "Switch to Buffer")
-  ;; ("c"   projectile-invalidate-cache         "Clear Cache")
+  ;; ("d"   counsel-projectile-find-dir         "Find Directory")
+  ;; ("b"   counsel-projectile-switch-to-buffer "Switch to Buffer")
+  ("c"   projectile-invalidate-cache         "Clear Cache")
   ("X"   projectile-cleanup-known-projects   "Cleanup Known Projects")
 
-  ("o"   projectile-multi-occur              "Multi Occur")
+  ;; ("o"   projectile-multi-occur              "Multi Occur")
   ("p"   counsel-projectile-switch-project   "Switch Project")
-  ("r"   hydra-projectile-rails/body         "Rails")
-  ("k"   projectile-kill-buffers             "Kill Buffers")
+  ("R"   hydra-projectile-rails/body         "Rails")
+  ;; ("k"   projectile-kill-buffers             "Kill Buffers")
   ("q"   nil                                 "Quit" :color blue))
 
 

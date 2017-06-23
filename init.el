@@ -37,6 +37,12 @@
 (setq use-package-always-ensure t) ;; Always auto install packages
 
 ;; Installed packages
+(use-package ace-window
+  ;; next-multiframe-window by default is s-'
+  :bind (([remap next-multiframe-window] . ace-window))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
 (use-package adaptive-wrap
   :init
   (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode))
@@ -163,6 +169,10 @@
 
 (use-package rainbow-delimiters
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package smart-mode-line
+  :if window-system
+  :init (sml/setup))
 
 (use-package smartparens-config
   :ensure smartparens
@@ -299,6 +309,9 @@
  '(completion-styles (quote (initials partial-completion)))
  '(create-lockfiles nil)
  '(css-indent-offset 2)
+ '(custom-safe-themes
+   (quote
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(delete-selection-mode t)
  '(enable-recursive-minibuffers t)
  '(fill-column 120)
@@ -325,7 +338,7 @@
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+    (smartparenas ace-window exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(ruby-deep-indent-paren-style nil)
