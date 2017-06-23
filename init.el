@@ -2,7 +2,82 @@
 
 ;;; Commentary:
 
-;; My personal Emacs config
+;; Setting variables first prevents loading issues, such as sml/no-confirm-theme.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(adaptive-wrap-extra-indent 2)
+ '(auto-save-file-name-transforms (\` ((".*" (\, temporary-file-directory) t))))
+ '(backup-directory-alist (quote (("." . "~/.emacs.d/.backups"))))
+ '(column-number-mode t)
+ '(company-backends
+   (quote
+    (company-files company-nxml company-css company-eclim company-elisp
+                   (company-tern company-capf company-keywords company-dabbrev-code company-abbrev company-etags)
+                   company-semantic company-oddmuse company-dabbrev)))
+ '(company-dabbrev-downcase nil)
+ '(company-dabbrev-ignore-case t)
+ '(company-idle-delay 0.3)
+ '(company-minimum-prefix-length 2)
+ '(company-search-regexp-function (quote company-search-flex-regexp))
+ '(completion-styles (quote (initials partial-completion)))
+ '(create-lockfiles nil)
+ '(css-indent-offset 2)
+ '(delete-selection-mode t)
+ '(enable-recursive-minibuffers t)
+ '(fill-column 120)
+ '(global-auto-revert-mode t)
+ '(global-company-mode t)
+ '(global-hl-line-mode t)
+ '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
+ '(ivy-mode t)
+ '(ivy-use-virtual-buffers t)
+ '(js-indent-level 2)
+ '(json-reformat:indent-width 2)
+ '(load-prefer-newer t)
+ '(menu-bar-mode nil)
+ '(mouse-wheel-progressive-speed nil)
+ '(neo-auto-indent-point t)
+ '(neo-autorefresh nil nil nil "This currently doesn't do what I want with projectile root customization.")
+ '(neo-show-hidden-files t)
+ '(neo-show-updir-line nil nil nil "Since we use with projectile, we don't need to change root dirs.")
+ '(neo-smart-open t)
+ '(neo-theme (quote arrow))
+ '(neo-vc-integration (quote (face)))
+ '(neo-window-fixed-size nil)
+ '(ns-right-command-modifier (quote left))
+ '(package-selected-packages
+   (quote
+    (smartparenas ace-window exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+ '(ruby-deep-arglist nil)
+ '(ruby-deep-indent-paren nil)
+ '(ruby-deep-indent-paren-style nil)
+ '(ruby-insert-encoding-magic-comment nil)
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(smartparens-global-mode t)
+ '(sml/no-confirm-load-theme t)
+ '(standard-indent 2)
+ '(tool-bar-mode nil)
+ '(visual-line-fringe-indicators (quote (left-curly-arrow nil)))
+ '(web-mode-attr-indent-offset 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-markup-indent-offset 2)
+ '(wgrep-auto-save-buffer t))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(hl-line ((t (:background "gray23"))))
+ '(region ((t (:background "gray33"))) nil "Make selected region more obvious")
+ '(web-mode-current-element-highlight-face ((t (:underline t)))))
 
 ;;; Code:
 (require 'package)
@@ -285,85 +360,6 @@
 
 (when (display-graphic-p)
   (setq frame-title-format '((:eval (my/frame-title-format)))))
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(adaptive-wrap-extra-indent 2)
- '(auto-save-file-name-transforms (\` ((".*" (\, temporary-file-directory) t))))
- '(backup-directory-alist (quote (("." . "~/.emacs.d/.backups"))))
- '(column-number-mode t)
- '(company-backends
-   (quote
-    (company-files company-nxml company-css company-eclim company-elisp
-                   (company-tern company-capf company-keywords company-dabbrev-code company-abbrev company-etags)
-                   company-semantic company-oddmuse company-dabbrev)))
- '(company-dabbrev-downcase nil)
- '(company-dabbrev-ignore-case t)
- '(company-idle-delay 0.3)
- '(company-minimum-prefix-length 2)
- '(company-search-regexp-function (quote company-search-flex-regexp))
- '(completion-styles (quote (initials partial-completion)))
- '(create-lockfiles nil)
- '(css-indent-offset 2)
- '(custom-safe-themes
-   (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
- '(delete-selection-mode t)
- '(enable-recursive-minibuffers t)
- '(fill-column 120)
- '(global-auto-revert-mode t)
- '(global-company-mode t)
- '(global-hl-line-mode t)
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(ivy-mode t)
- '(ivy-use-virtual-buffers t)
- '(js-indent-level 2)
- '(json-reformat:indent-width 2)
- '(load-prefer-newer t)
- '(menu-bar-mode nil)
- '(mouse-wheel-progressive-speed nil)
- '(neo-auto-indent-point t)
- '(neo-autorefresh nil nil nil "This currently doesn't do what I want with projectile root customization.")
- '(neo-show-hidden-files t)
- '(neo-show-updir-line nil nil nil "Since we use with projectile, we don't need to change root dirs.")
- '(neo-smart-open t)
- '(neo-theme (quote arrow))
- '(neo-vc-integration (quote (face)))
- '(neo-window-fixed-size nil)
- '(ns-right-command-modifier (quote left))
- '(package-selected-packages
-   (quote
-    (smartparenas ace-window exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
- '(ruby-deep-arglist nil)
- '(ruby-deep-indent-paren nil)
- '(ruby-deep-indent-paren-style nil)
- '(ruby-insert-encoding-magic-comment nil)
- '(scroll-bar-mode nil)
- '(show-paren-mode t)
- '(smartparens-global-mode t)
- '(standard-indent 2)
- '(tool-bar-mode nil)
- '(visual-line-fringe-indicators (quote (left-curly-arrow nil)))
- '(web-mode-attr-indent-offset 2)
- '(web-mode-code-indent-offset 2)
- '(web-mode-css-indent-offset 2)
- '(web-mode-enable-current-element-highlight t)
- '(web-mode-markup-indent-offset 2)
- '(wgrep-auto-save-buffer t))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(hl-line ((t (:background "gray23"))))
- '(region ((t (:background "gray33"))) nil "Make selected region more obvious")
- '(web-mode-current-element-highlight-face ((t (:underline t)))))
 
 (provide '.emacs)
 ;;; init.el ends here
