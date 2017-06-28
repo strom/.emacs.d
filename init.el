@@ -31,6 +31,7 @@
  '(global-auto-revert-mode t)
  '(global-company-mode t)
  '(global-hl-line-mode t)
+ '(global-subword-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(ivy-mode t)
