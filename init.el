@@ -173,6 +173,9 @@
           :load-path "./lisp")
   :bind (("C-x k" . hydra-kill-buffer/body)))
 
+(use-package iedit
+  :bind (("C-c ;" . iedit-mode)))
+
 (use-package ivy
   :init (ivy-mode)
   ;; Don't show useless minor mode in status bar.
