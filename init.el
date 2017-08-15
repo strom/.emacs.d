@@ -15,7 +15,7 @@
  '(company-backends
    (quote
     (company-files company-nxml company-css company-eclim company-elisp
-                   (company-tern company-capf company-keywords company-dabbrev-code company-abbrev company-etags)
+                   (company-yasnippet company-tern company-capf company-keywords company-dabbrev-code company-abbrev company-etags)
                    company-semantic company-oddmuse company-dabbrev)))
  '(company-dabbrev-downcase nil)
  '(company-dabbrev-ignore-case t)
@@ -52,7 +52,7 @@
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages
    (quote
-    (smartparenas ace-window exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
+    (yasnippet smartparenas ace-window exec-path-from-shell wgrep which-key zenburn-theme yaml-mode web-mode use-package smartparens robe rainbow-delimiters projectile-rails neotree multiple-cursors markdown-mode magit json-mode jdee hydra feature-mode expand-region dumb-jump diff-hl counsel-projectile company-tern adaptive-wrap)))
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(ruby-deep-indent-paren-style nil)
@@ -206,7 +206,7 @@
            ("s-F" . counsel-projectile-ag))))
 
 (use-package magit
-  :bind (("C-c g" . magit-status)))
+  :bind (("C-x g" . magit-status)))
 
 (use-package multiple-cursors
   :bind (("s-d" . mc/mark-next-like-this)
@@ -281,6 +281,9 @@
   :diminish which-key-mode
   ;; Key bindng training wheels.
   :init (which-key-mode))
+
+(use-package yasnippet
+  :init (yas-global-mode 1))
 
 (use-package zenburn-theme
   :config (load-theme 'zenburn t))
