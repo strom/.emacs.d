@@ -49,6 +49,7 @@
  '(neo-theme (quote arrow))
  '(neo-vc-integration (quote (face)))
  '(neo-window-fixed-size nil)
+ '(neo-window-width 36)
  '(ns-right-command-modifier (quote left))
  '(package-selected-packages
    (quote
@@ -314,6 +315,8 @@
   (setq web-mode-content-types-alist
         '(("jsx"  . "\\.js[x]?\\'")))
   :config
+  (add-to-list 'web-mode-comment-formats '("jsx" . "//" ))
+  (add-to-list 'web-mode-comment-formats '("javascript" . "//" ))
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil)))
