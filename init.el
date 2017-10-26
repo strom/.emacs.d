@@ -59,6 +59,7 @@
  '(ruby-deep-indent-paren-style nil)
  '(ruby-insert-encoding-magic-comment nil)
  '(scroll-bar-mode nil)
+ '(sh-indent-after-continuation nil)
  '(show-paren-mode t)
  '(smartparens-global-mode t)
  '(sml/no-confirm-load-theme t)
@@ -324,7 +325,8 @@
 (use-package yaml-mode
   :mode (("\\.y[a]?ml\\'" . yaml-mode)))
 
-
+;; File associations
+(add-to-list 'auto-mode-alist '("\\.apib\\'" . markdown-mode))
 
 ;; Initial Window Size
 (add-to-list 'default-frame-alist '(height . 48))
