@@ -202,7 +202,8 @@
   ;; Ivy/Counsel support
   (use-package counsel-projectile
     ;; Bind in init so projectile can have counsel bindings even if this is lazy loaded.
-    :init (counsel-projectile-on)
+    :init (counsel-mode)
+    :diminish counsel-mode
     :bind (("s-t" . counsel-projectile-find-file)
            ("s-p" . hydra-projectile/body)
            ("s-F" . counsel-projectile-ag))))
@@ -235,6 +236,9 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root.")))))
+
+(use-package powerline
+  :init (powerline-default-theme))
 
 (use-package projectile
   ;; Don't show useless minor mode in status bar.
