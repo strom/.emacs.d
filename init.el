@@ -260,13 +260,12 @@
   :init (sml/setup))
 
 (use-package smartparens-config
+  :diminish smartparens-mode
   :ensure smartparens
   :bind (("C-M-s" . hydra-smartparens/body))
   :init
   ;; Use recommended bindings
-  (sp-use-smartparens-bindings)
-  ;; For some reason, we can't diminish with the keyword. Maybe because smartparens-config invokes smartparens indirectly?
-  (diminish 'smartparens-mode))
+  (sp-use-smartparens-bindings))
 
 (use-package tern
   :diminish tern-mode
@@ -341,7 +340,6 @@
 
 ;; Set visual-line-mode when coding
 (add-hook 'prog-mode-hook #'visual-line-mode)
-(diminish 'visual-line-mode)
 
 ;; Some personal bindings
 ;; s-*, \s - Command
